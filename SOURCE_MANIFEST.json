@@ -1,0 +1,7 @@
+[
+  {
+    "source": "sheep_forest_investigator/신용민_G016_Sheep_Forest_Investigator_Advanced.ipynb",
+    "target": "game.ipynb",
+    "transform": "outputs/metadata/attachments removed; personal absolute paths replaced"
+  }
+]
