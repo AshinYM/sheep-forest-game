@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>양들이 잠든 숲</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body><div class="grain" aria-hidden="true"></div><main>
+<header><div><p class="eyebrow">FIELD RECORD · 22:00</p><h1>양들이 잠든 숲</h1><p class="intro">숲은 네 말을 듣는다.<br>다만, 세 번은 기다려주지 않는다.</p></div><span id="mode" class="badge">로컬 모드</span></header>
+<div class="layout"><aside><h2>조사 상태</h2><dl id="status"><dt>위치</dt><dd>숲 입구</dd><dt>시간</dt><dd>22:00</dd></dl>
+<div class="lives" aria-label="규칙 위반 횟수"><span></span><span></span><span></span></div><p id="strikes">규칙 위반 0 / 3</p>
+<h2>소지품</h2><ul id="inventory"></ul><details><summary>발견한 규칙</summary><ol id="rules"><li>아직 규칙을 찾지 못했다.</li></ol></details>
+<details><summary>입력 도움말</summary><p>한 번에 행동 하나를 말해 주세요. 해석이 모호하거나 연결이 끊기면 위반·시간은 늘지 않습니다.</p><p>로컬 명령 예시: 주변을 조사한다 / 깊은 숲으로 이동한다 / 기다린다</p><p>1·2회 위반에는 힌트가 주어집니다. 세 번째 위반은 사망입니다. LLM이 해석한 행동은 실행 전에 확인합니다.</p></details>
+<button id="reset" class="quiet">새 조사 시작</button><p class="privacy">기록은 이 컴퓨터에만 저장됩니다.<br>OpenAI 모드에서는 입력이 API로 전송됩니다.</p></aside>
+<section class="play" aria-label="게임 진행"><div class="scene"><span class="eyebrow">CURRENT SCENE</span><p id="scene">22:00. 통제선 아래에 선발 조사팀의 흔적이 남아 있다. 해가 뜨기 전 조사 기록을 확보하고 탈출해야 한다.</p></div>
+<div id="history" class="history" role="log" aria-live="polite"></div>
+<div id="proposal" class="proposal" hidden><p>이 행동이 맞나요?</p><strong id="proposal-label"></strong><div class="buttons"><button id="confirm">이 행동을 실행</button><button id="cancel" class="quiet">다시 설명할게요</button></div></div>
+<div id="ending" class="ending" hidden><p id="ending-title"></p><button id="restart">새 조사 시작</button></div>
+<div id="choices" class="choices"></div><button id="show-choices" class="quiet small" hidden>지금 장면의 짧은 명령 보기</button>
+<form id="form"><label for="message">무엇을 할까?</label><div class="input-row"><textarea id="message" rows="2" maxlength="1000" placeholder="숲속에서 할 행동을 자유롭게 말해 주세요." required></textarea><button id="send" type="submit">말하기 <span aria-hidden="true">↗</span></button></div></form>
+<p id="notice" role="status" class="notice">로컬 모드는 정해진 짧은 명령을 인식합니다. 자유 표현 확장은 OpenAI 연결을 명시적으로 켰을 때 사용합니다.</p><button id="retry" class="quiet" hidden>같은 요청 다시 보내기</button>
+</section></div><footer>선택은 네가, 판정은 숲의 규칙이.</footer></main></body></html>

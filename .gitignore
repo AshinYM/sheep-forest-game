@@ -22,3 +22,10 @@ phm_state*/
 model_outputs/
 output/
 outputs/
+
+data/
+artifacts/
+backups/
+postman/.dependencies/
+*.ndjson
+*.log

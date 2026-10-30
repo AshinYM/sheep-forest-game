@@ -1,0 +1,37 @@
+purpose:
+  stands_in_for: OpenAI Responses POST /v1/responses, localhost-only contract subset and authored fault fixtures.
+  unblocks: Verify the real game HTTP path without a key, paid call or model download. One-port path routing only.
+assumptions:
+  - id: failed-interpretation-keeps-player-alive
+    status: supported
+    claim: In the simulated failure fixtures, the caller preserves turn, revision and the player's two existing strikes.
+    reason: The actual game HTTP server and Responses HTTP client ran against the stand-in, not a stubbed HTTP client.
+    verification: 2026-10-30 ran the full 36-test suite with actual LangChain structured output and compiled LangGraph routing. Ten failure cases, including 429, JSON/HTML 500, timeout, refusal, malformed/incomplete responses, invalid target/action and state injection preserved the world. Same-ID replays made no additional model attempt.
+    source: tests/test_http.py::test_real_http_provider_failures_confirmation_and_retry; forest/llm.py; forest/service.py; reports/verification.json
+    updated_at: '2026-10-30'
+  - id: no-automatic-provider-retry
+    status: supported
+    claim: The isolated provider HTTP test sends fourteen provider requests even though ten failed inputs are each submitted twice to the game.
+    reason: Postman request events showed fourteen POST /v1/responses calls for ten errors, two non-action intents and two proposals. The timed-out fixture completed later, demonstrating why client timeout is not proof of remote cancellation.
+    verification: 2026-10-30 final framework-integrated test-run log delta showed exactly fourteen requests. Port-specific cookie isolation and restart recovery were also checked. Real provider billing and cancellation were not checked.
+    source: tests/test_http.py; postman/mocks/openai/default.js; reports/verification.json
+    updated_at: '2026-10-30'
+  - id: classification-is-not-state-authority
+    status: supported
+    claim: A simulated valid action changes no world state before player confirmation; cancellation changes no strikes, and confirmation alone reaches the engine.
+    reason: HTTP assertions and an actual browser run observed proposal, cancel, a second proposal and confirmation. State-edit fields and invalid enum values were rejected.
+    verification: 2026-10-30 browser on localhost:8064 displayed the simulation badge. Proposal and cancellation kept zero strikes; confirmed stare in the luminous scene produced the first warning. No live model was used.
+    source: forest/interpret.py; forest/service.py; tests/test_service.py; docs/images/confirmation-simulation.jpg
+    updated_at: '2026-10-30'
+  - id: live-model-korean-understanding
+    status: unknown
+    claim: A user-selected live model reliably preserves Korean negation, dialogue, quoted text and multi-action intent.
+    reason: This work did not call a real model. Authored fixture responses cannot establish semantic classification accuracy or model/account compatibility.
+    verification: Local parser fixtures and provider fault handling were tested only. A separately authorized live evaluation with explicit model and budget would be needed to establish this claim.
+    source: examples/actions.json; api/openai-responses-subset.json; https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses
+    updated_at: '2026-10-30'
+fingerprints:
+  - id: forest-three-strikes-local
+    date: '2026-10-30'
+    commit: 'a6ce3c1badb66ae8062bf8913ef0b831245924a5 (working tree modified for this implementation)'
+    cli: '1.75.0'

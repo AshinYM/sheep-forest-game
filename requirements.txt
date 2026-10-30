@@ -1,0 +1,2 @@
+# Tested LangChain/LangGraph environment, including transitive pins.
+-r requirements-lock.txt

@@ -1,0 +1,11 @@
+version: 1
+name: forest-openai-stand-in
+slug: forest-openai
+origin: api.openai.com
+protocol: http
+port: 4567
+interceptRequests: true
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true

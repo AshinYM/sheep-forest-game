@@ -1,0 +1,8 @@
+{
+  "scope": "hand_authored_local_command_regression_not_real_model_accuracy",
+  "cases": 27,
+  "passed": 27,
+  "failed_ids": [],
+  "real_model_calls": 0,
+  "real_korean_language_accuracy_measured": false
+}
